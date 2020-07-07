@@ -1,5 +1,6 @@
 ## Usage
 
+```
 USAGE:
     masssnd [OPTIONS] --input <FILE>
 
@@ -11,6 +12,7 @@ OPTIONS:
     -i, --input <FILE>     Sets the input file to use.
                            Can contain both single IPv4 addresses and CIDR notations
     -t, --threads <INT>    Numbers of threads [default: 40]
+```
 
 ## Dependencies
 
