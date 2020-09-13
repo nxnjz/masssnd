@@ -37,4 +37,10 @@ cd masssnd
 cargo install --path .
 ```
 
+To update from source:
+
+```
+git pull
+cargo install --path . --force
+```
 
