@@ -37,7 +37,7 @@ Can contain both single IPv4 addresses and CIDR notations",
         .get_matches();
 
     let input = fs::read_to_string(matches.value_of("infile").unwrap()).unwrap();
-    let thr_cnt: usize = matches.value_of("threads").unwrap().parse().unwrap();
+    let mut thr_cnt: usize = matches.value_of("threads").unwrap().parse().unwrap();
     let mut addrs: Vec<Ipv4Addr> = Vec::new();
     for line in input.lines().filter(|l| l.contains('.')) {
         if line.contains('/') {
@@ -49,6 +49,10 @@ Can contain both single IPv4 addresses and CIDR notations",
     addrs.sort();
     addrs.dedup();
     eprintln!("Processing a total of {} addresses", addrs.len());
+
+    if addrs.len() < thr_cnt {
+        thr_cnt = addrs.len();
+    }
 
     let (tx, rx) = channel::unbounded();
     let mut threads = Vec::new();
